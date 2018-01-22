@@ -8,9 +8,20 @@ class RegistrationsController < ApplicationController
 
   def create
     @user = User.new(user_params)
-    if @user.save
-      session[:user_id] = @user.id
-      redirect_to root_path
+    p user_params
+    # if @user.save
+    #   session[:user_id] = @user.id
+    #   redirect_to root_path
+    # else
+    #   render :new
+    # end
+
+    p "************************** EMAIL ***************"
+    p user_params["email"]
+
+    if user_params["email"] == ""
+      url = "https://www.romanpichler.com/blog/10-tips-writing-good-user-stories/"
+      redirect_to url
     else
       render :new
     end
